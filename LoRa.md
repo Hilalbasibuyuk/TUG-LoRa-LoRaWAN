@@ -143,6 +143,52 @@ Resim kaynakçası -> https://kalitenetwork.com/blog/lora-ve-lorawan-nedir
 
 ---
 
+
+### Ortalama / tipik teknik özellikler
+
+- Frekans bantları: Bölgeye göre değişir — Avrupa: ~868 MHz (EU868), ABD: ~915 MHz (US915), Asya için 433 / 920 MHz.
+
+- Menzil: Şehir/yerleşim: 2–10 km tipik; açık arazi/LOS: 10–40+ km mümkün (anten, yükseklik ve çevreye bağlı).
+
+- Veri hızı (phy): 0.3 kbps — 50 kbps arası (spreading factor ve bant genişliğine bağlı).
+
+- Modülasyon: Chirp Spread Spectrum (CSS) — yüksek duyarlılık ve interferans bağışıklığı sağlar.
+
+- Alıcı hassasiyeti: Tipik -130 dBm civarından -137 dBm’lere kadar (kanal BW ve SF’e bağlı).
+
+- Verici güç (TX): Bölgeye göre +14 dBm (AB limitleri) ile +20 dBm (bazı bölgeler/cihazlar) arası; bazı modüllerde harici amplifikatör ile +27 dBm görülebilir.
+
+### Güç tüketimi:
+
+- Aktif TX: 10–120 mA arası (güç seviyesi ve modüle bağlı).
+
+- RX: ~8–15 mA tipik.
+
+- Deep-sleep: µA düzeyinde (1–10 µA) — bu yüzden yıllarca pil ömrü mümkün.
+
+- Pil ömrü: Uygulamaya bağlı; düşük gönderim sıklığı (ör. günde 1–10 mesaj) ile yıllarca (2–10 yıl).
+
+- Maks payload (LoRaWAN): Uygulama ve bölgeye bağlı; pratikte ~51–222 byte aralığında değişir (ADR ve DR ile sınırlamalar).
+
+- Güvenlik: LoRaWAN tipik olarak AES-128 uçtan uca şifreleme kullanır (OTAA/ABP kimlik doğrulama).
+
+- Çip / modül örnekleri: Semtech tabanlı (ör. SX127x, SX126x) ve bunları kullanan modüller (HopeRF RFM95/96, Murata, vb.).
+
+- Tipik donanım: MCU (ör. STM32L0/L4, nRF52, ESP32), LoRa radyo modülü, batarya (Li-ion/AA), sensörler (temp, nem, hareket), anten (PCB/ipek/harici).
+
+- Ağ yapısı: Cihaz → Gateway → Network Server (ör. ChirpStack, The Things Network) → Application Server.
+
+- Fiziksel boyut: Küçük sensör düğümlerinden (coin/AA pil boyutu) endüstriyel kutulara kadar geniş.
+
+- Çalışma sıcaklığı: Tipik endüstriyel tipler -40°C … +85°C destekleyebilir.
+
+
+### Wi-Fi / LTE-M / NB-IoT ile karşılaştırıldığında: LoRa, çok düşük enerji + uzun menzil ve düşük veri hızları isteyen uygulamalarda ideal. Yüksek veri hacmi veya düşük gecikme gerekiyorsa başka teknolojiler daha uygun.
+
+
+
+---
+
 ## LoRa Katılım Prosedürü
 LoRa iletişim ağına katılan yeni bir cihazın aktivasyonu, aşağıda listelenen iki işlemden herhangi biri ile tamamlanabilir.:
 
