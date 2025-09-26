@@ -223,6 +223,9 @@ Ayrıca sahadaki modbus sistemler de LoRa kablosuz ağı üzerinden SCADA sistem
 
 ## LoRaWAN Sınıfları
 
+LoRaWAN cihazları 3 sınıfa (Class A, B, C) ayrılır. Bu sınıflar, cihazın enerji tüketimi ile ağdan mesaj alabilme esnekliği arasında bir denge kurmak için tasarlanmıştır.
+
+
 
 <img width="744" height="717" alt="image" src="https://github.com/user-attachments/assets/64a5db7c-e89b-412a-a112-501a06f5aa51" />
 
