@@ -160,6 +160,31 @@ Kablosuz haberleşme modülleri, IoT uygulamalarında sıklıkla kullanılan bir
 - Enerji Yönetimi ve İzleme(LoRaWan, Zigbee, 5G, Wi-Fi) 
 
 
+---
+
+
+## Kablosuz ağ türleri
+Kablosuz ağlar farklı ihtiyaçlara hizmet eder. Farklı kablosuz ağ türleri şunlardır:
+
+- **Kablosuz LAN** WLAN, ağdaki düğümleri birbirine bağlamak için kablolar yerine radyo teknolojisini kullanır. Wi-Fi, IEEE tarafından belirlenen standartları kullanarak uç nokta cihazlarıyla bağlantı sağlayan kablosuz erişim noktaları (AP'ler) aracılığıyla bir WLAN üzerinden iletişim kurmak için kullanılan iletim yöntemidir.
+- **Kablosuz geniş alan ağı** WWAN bazen mobil geniş bant olarak da adlandırılır. WWAN'lar, geniş bir coğrafi mesafeyi kapsayan ve çeşitli hizmetleri destekleyen bir kablosuz ağ oluşturmak için hücresel teknolojileri kullanır.
+- **Kablosuz metropol alan ağı** WMAN, ofis ve ev ağlarının dışından erişim sağlar. WLAN'dan daha büyük, WWAN'dan ise daha küçüktür.
+- **Sabit kablosuz** Sabit kablosuz ağ, evlere ve işletmelere kablolu fiber veya kablolu televizyon bağlantıları yerine, hava dalgaları üzerinden son mil internet bağlantısı sağlamanın bir yoludur. Sabit kablosuz, özellikle kablolu bağlantının yaygın olmadığı kırsal alanlar veya uydu internet hizmetlerinin tek seçenek olduğu bölgeler için uygundur.
+- **Kablosuz kişisel alan ağı** WPAN, genellikle klavye, fare, kulaklık ve diğer cihazlara bağlanmak için Bluetooth gibi kısa menzilli kablosuz teknolojiyle etkinleştirilir.
+- **Belediye kablosuz ağı** MWN, yerel bir hükümet yetkilisi tarafından işletilen bir kablosuz ağdır. Belirli bir coğrafyadaki kullanıcılara erişim sağlar.
+- **Vatandaş Geniş Bant Radyo Servisi** CBRS , Federal İletişim Komisyonu tarafından 2020 yılında onaylanan radyo spektrumuna dayanmaktadır. CBRS sinyalleri kilometrelerce mesafeyi kapsayabilir ve Wi-Fi ağlarından farklı olarak görüş hattı sınırlamalarıyla sınırlı değildir . Bu sayede kuruluşlar, CBRS'yi kullanarak özel LTE ağları kurabilir ve WAN dağıtımlarını destekleyebilir. CBRS ağları, özellikle endüstriyel ve sağlık hizmetleri dağıtımları gibi güvenilirliğin kritik öneme sahip olduğu ortamlar için uygundur. CBRS dağıtımı yaparken, işletmeler genellikle basit bir uygulamayla başlayıp daha sonra karmaşıklık katmanları ekleyerek belirli en iyi uygulamaları izlemelidir .
+- **Kablosuz ağ örgüsü** Bir WMN, her kullanıcının bulunduğu yere kurulan kablosuz düğümlerin bağlanmasıyla oluşturulur. Bu tasarım, merkezi olmayan ve daha anlaşılırdır çünkü her düğüm yalnızca bir sonraki düğüme kadar veri iletmek zorundadır. WMN'ler bağımsız veya internete bağlı olabilir. Güvenilir ve ölçeklenebilirdirler, ancak merkezi bir sunucu olmadığı için izlenmeleri daha zor olabilir.
+- **Kablosuz geçici ağ** WANET , yönlendirici veya kablosuz erişim noktası (AP) kullanımı gerektirmeden kendiliğinden oluşturulabilen bir kablosuz ağdır . WANET'ler ise eşler arası teknolojiye dayanır ve ağın parçası olan her cihaz (örneğin kablosuz bilgisayar veya akıllı telefon) ağ operasyonlarından sorumludur.
+
+
+<img width="862" height="329" alt="image" src="https://github.com/user-attachments/assets/e00e4233-1096-4c0d-ad8e-db3803a0733e" />
+
+
+
+Resim kaynakçası -> https://emanetemre.medium.com/kablosuz-haberle%C5%9Fme-teknolojileri-19d08a899d02
+
+
+
 
 # KAYNAKÇA
 - https://www.hdaenerji.com.tr/kablosuz-haberlesme-modulleri-ve-iot/
