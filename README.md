@@ -27,14 +27,16 @@ Nesneleri internete bağlamak amacıyla halihazırda kullanılmakta olan hücres
 - **Düşük Maliyet:** LoRa ağları, düşük maliyetli çipler ve ekipmanlar kullanarak ekonomik bir çözüm sunar
 - **Açık Standart:** LoRa, açık bir standarttır ve bu nedenle birçok farklı cihaz ve uygulama tarafından desteklenir.
 
+---
 
+LoRa haberleşme teknolojisinin kullanımı için en uygun alanlar, veri büyüklüğünün düşük veya orta seviyede olduğu, aktarımda yaşanabilecek kısa süreli gecikmelerin göz ardı edilebileceği, bir başka deyişle, “mission-critical” olarak da tabir edilen yaşamsal altyapı sistemlerinin dışında kalan uygulama alanlarıdır. Bu alanlara en iyi örnek akıllı tarım uygulamalarıdır. Uzun süre bakıma ihtiyaç duymadan geniş alanlara sinyal aktarımı yapabilen LoRa teknolojisi sayesinde akıllı tarım uygulamaları çok daha kolay takip edilebilir ve geliştirilebilir hale gelmiştir. Toprak kirliliği, nem, sıcaklık ve güneş ışığı gibi etkenleri ölçmek üzere konumlandırılan LoRa destekli sayaçlar ile uzak bir konumdan tarım alanının uygun şartlarda olup olmadığı kontrol edilebilir hale gelecektir. Akıllı tarımın yanı sıra küçük veri paketlerinin söz konusu olduğu su ve gaz sayacı uygulamaları, fabrika otomasyonu veya akıllı bina uygulamaları da LoRa’nın rahatlıkla kullanılabileceği alanlardır. ​
 
 ### LoRa ağı genellikle şu uygulamalarda kullanılır:
 
 - Akıllı şehir uygulamaları (park sensörleri, çöp kutuları, aydınlatma kontrolü)
 - Endüstriyel IoT (fabrika otomasyonu, tarım sensörleri)
 - Uzaktan sensör izleme ve kontrol
-- Akıllı tarım projeleri
+- Akıllı tarım projeleri (yukarıda bahsettik)
 - Ev otomasyonu ve akıllı bina sistemleri
 
 
@@ -43,17 +45,67 @@ LoRa, geniş alanlarda dağılmış sensör ağları kurmak isteyen uygulamalar 
 
 
 ### LoRa Haberleşme Yapısı, Avantaj ve Dezavantajları
+
+
 LoRa,  temelde dört kısımdan oluşan bir haberleşme teknolojisidir. Birinci kısım **LoRa Node (düğüm noktası)** olarak adlandırılan uç noktalardır. Bu noktalarda LoRa modülü içeren veya modül uyumluluğu sayesinde daha sonra bünyesine LoRa modülü takılabilen sensörler, sayaçlar, kontrol cihazları gibi uç nokta cihazları kullanılır. 
 
+
+<img width="800" height="800" alt="P1010618_800X800" src="https://github.com/user-attachments/assets/0740f1fb-29b4-4172-a4f8-9d3c70a57573" />
+
+
+
 İkinci kısımda **LoRa Gateway** olarak adlandırılan ağ geçidi özelliğindeki cihazlar bulunur. Bu cihazlar, LoRa düğüm noktalarından gelen verileri herhangi bir protokol dönüşümü yapmaksızın Ethernet, WiFi veya hücresel haberleşme gibi haberleşme teknolojilerini kullanarak LoRaWAN sunucusuna aktarır. Robustel tarafından geliştirilen R3000 LG serisi de, bu tür uygulamalarda LoRa Gateway olarak kullanılabilecek cihazlardan biridir. R3000 LG, marka bağımsız olarak uç noktadaki LoRa Node cihazları ile LoRaWAN sunucusu arasındaki bağlantıyı sağlar. 
+
+
+<img width="785" height="750" alt="LoRa-Gateway-F-LG-2XXXDCX" src="https://github.com/user-attachments/assets/b5b8174b-1e6e-4098-b8d2-be354da24ebe" />
+
+
 
 LoRa topolojisinin üçüncü kısımda ise **LoRaWAN sunucusu** yer alır. LoRaWAN sunucusu, ağ geçidinden gelen verileri çözümleyerek uygulama sunucusunda kullanılacak protokole çevirir ve kullanıma hazır hale getirir. 
 
 Son olarak dördüncü aşamada yer alan **Uygulama Sunucuları**, düğüm noktasından gelen verilerin kontrol ve takibini yapar.
 
 
+<img width="584" height="411" alt="image" src="https://github.com/user-attachments/assets/0ee93087-ca16-4c96-a708-4a594055539a" />
+
+
+Resim kaynakçası -> https://kalitenetwork.com/blog/lora-ve-lorawan-nedir
+
+
+
+
+
+Star Topology gereği sensörler direkt olarak birbirleri ile haberleşemezler, gateway üzerinden veri alışverişi yaparlar. Sensörler arası direkt veri aktarımının yapılabilmesi için sensörlerin bir parçası olan gömülü mikroişlemcilerde, RadioHead radyo paketi kütüphanesinin kullanılması gerekir. Bu, verilerin direkt aktarımı için nesne yönelimli bir kütüphanedir.
+
+Gatewayler, ağ sunucusuna standart IP bağlantısı ile yani TCP/IP protokolünü kullanarak bağlanır. IP paketi ile RF paketleri arasında dönüşüm yaparak uç cihazlar ve sensörler arasında bir tercüman, bir köprü rolü oynar. Şöyle ki sensörlerden gatewaye gelen veri RF paketi şeklindedir ancak ağ sunucusuna gönderilen verinin IP paketi şeklinde gönderilmesi gerekir. Bu iki paket tipi arasındaki dönüşümden gateway sorumludur. Aşağıdaki yapıyı incelerseniz her şey daha da netlik kazanacaktır.
+
+
+
+
+
+
+
+<img width="885" height="484" alt="image" src="https://github.com/user-attachments/assets/b182fb83-cb40-4187-bd13-95b960874b09" />
+Resim kaynakçası -> https://kalitenetwork.com/blog/lora-ve-lorawan-nedir
+
+
+
+
+
+### LoRa tabanlı end cihazları
+
+<img width="978" height="425" alt="image" src="https://github.com/user-attachments/assets/86885f41-68cc-41d8-ab9a-cc4ee984efc8" />
+Resim kaynakçası -> https://www.mokolora.com/tr/full-understanding-of-lora-and-lorawan/
+
+
+
+
+
+
+
 
 <img width="1065" height="714" alt="image" src="https://github.com/user-attachments/assets/7e47f46e-f0cc-4d95-a70e-6950a539311e" />
+
 
 
 
@@ -78,12 +130,71 @@ Resim kaynakçası -> https://gsl.com.tr/lora-kablosuz-haberlesmenin-yukselen-yi
 
 
 
+
+LoRa’nın, LoRa uç cihazları ve LoRaWAN’dan oluştuğundan bahsetmiştik. Aşağıdaki görsele baktığımızda da bunun bir özetini görüyoruz. RF layer, kullanılacak radyo frekansı aralığının tanımlandığı katmandır. Physical Layer yani fiziksel katmanda ise LoRa uç cihazları bulunmaktadır. LoRa protokolünde fiziksel katmanda, LoRa uç cihazları ve Gateway arasında sadece tek bir “hop” bağlantısınayani atlama adımına izin verilir. LoRaWAN kısmına ise ağda bulunan cihazların sınıf bilgisi ve uygulama katmanı dahildir.
+
+
+
+<img width="599" height="334" alt="image" src="https://github.com/user-attachments/assets/409ab325-4954-4d86-b7da-658812d4fa1a" />
+
+
+
+Resim kaynakçası -> https://kalitenetwork.com/blog/lora-ve-lorawan-nedir
+
+
+
+
 ### LORAWAN Haberleşme Sistemi
 
 LoRaWAN yani Long Range teknolojisi ile haberleşme yapan LoRa sensörleri ve lora kontrolörleri LoRa gateway cihazı ile kablosuz irtibatlamak suretiyle sahadan veri toplamak ve sahaya komut vermek için kullanılan sistemerdir.
 Sahadan gelen tüm veriler LoRa gateway üzerinden bir LoRa IoT bulut platformuna gönderilir. Bu cloud platformu istenen analizleri yapar ve gerekirse sahaya otomtik olarak belli koşullara bağlı komutlar gönderebilir.
 Örneğin seraların yer aldığı bir sahada, sera içindeki nem oranı düştüğünde, lora nem sensörü bu değeri LoRa geçit cihazı vasıtasıyla iot bulut platformuna iletir. Bu durum bulut platformunun sahadaki lora controller cihazını tetiklemesine yol açar ve kontroller su vanasını çalıştırır.
 Ayrıca sahadaki modbus sistemler de LoRa kablosuz ağı üzerinden SCADA sistemine entegre edilebilir.
+
+
+
+## LoRaWAN Sınıfları
+
+### A Sınıfı (Tetikleme ile dinleme, Düşük Pil Tüketimi)
+Tüm LoRa cihazlar A sınıfı ile uyumludur. A sınıfı cihazlarda pil tüketimi en az seviyede tutularak güç konusunda büyük oranda tasarruf sağlamak esastır. Uç cihazlar (sensörler) sürekli olarak gateway’e (ağ geçidi) mesaj gönderebilirler. Yani uplink (uç cihaz -> gateway) sürekli olarak yapılabilir ancak cihazlar ağı dinleme anlamında sürekli uyku modundadır. Güç konusundaki büyük avantaj bu durumdan kaynaklanır. Çünkü uç cihazlar ağı dinlemek için bir pil tüketimi gerçekleştirmez. Bu sebeple gatewayden uç cihaza mesaj iletimi her zaman olamaz. Bir downlink (gateway -> uç cihaz) sadece bir uplink sonrasında gerçekleştirilebilir. Gateway uç cihazdan gelen veriyi servera (sunucu) yönlendirir. Sunucudan ise verinin alındığına dair bir ACK mesajı + gerekli yanıt döner, gateway bunu uç cihaza LoRa paketi halinde sunar. Böylece bir uplink işleminin hemen ardından bir downlink gerçekleştirilmiş olur.
+
+LoRa haberleşme teknolojisinin diğer kablosuz haberleşme teknolojilerine kıyasla en büyük avantajı, geniş mesafeye düşük maliyetle erişim imkanı sağlamasıdır. Önceden belirtildiği üzere WiFi ile erişim kurabileceğimiz alan çok kısıtlıdır ve bununla birlikte güç tüketimi de yüksek seviyededir. Hücresel haberleşme ise mesafe kısıtlamasına tabi olmamasına rağmen yüksek güç tüketimi, operatör firmaların erişim altyapılarının durumuna bağımlılık ve hizmet bedelleri ortaya çıkarmaktadır. Buna karşın LoRa haberleşme teknolojisinin sunduğu, kapalı alanda 2-3 kilometreye, açık alanda 15 kilometreye kadar varan erişim imkanı, uç noktada bağlı olacak cihaza göre bir veya iki adet kalem pil ile 10 yıla kadar sorunsuz bir şekilde çalışabilmektedir.
+
+<img width="787" height="431" alt="image" src="https://github.com/user-attachments/assets/6a120dcb-5667-4e01-a53c-a27422f9eff3" />
+Resim kaynakçası -> https://kalitenetwork.com/blog/lora-ve-lorawan-nedir
+
+
+A Sınıfı cihazlar özellikle sürekli veri aktarımının olmadığı, tetikleyici bir işlem sonrasında hemen yanıt alınması istenen uygulamalarda kullanılır.
+
+Özetle A sınıfı cihazlar sürekli mesaj, veri gönderebilirler(uplink) ancak mesaj, veri alımını (downlink) sadece bir uplink gerçekleştirdikten sonra yapabilirler.
+
+### B Sınıfı (Periyodik Dinleme, Dengeli Pil Tüketimi)
+B Sınıfı cihazlarda zamanlanmış veri iletişimi gerçekleşir. B Sınıfı bir cihazın bir veri alabilmesi için gateway’den periyodik olarak yani belirli zaman dilimlerinde senkronize olduklarına ilişkin bir işaret sinyali (beacon) alması gerekir. Uç cihaz ve gateway’in senkronize olmadığı anlarda bir uç cihaza veri iletimi yani downlink gerçekleştirilemez. Yine aynı şekilde uplink de sadece bu belirli zaman aralıklarında gerçekleştirilebilir.
+
+Özetle B sınıfı cihazlar, mesaj gönderme ve alma işlemlerini sadece ayarlanmış zaman dilimlerinde gerçekleştirebilirler.
+
+
+
+### C Sınıfı (Sürekli Zamanlı Dinleme, Yüksek Pil Tüketimi)
+Bu sınıfa dahil olan cihazlarda sürekli olarak dinleme gerçekleştirilir böylece herhangi bir zaman diliminde downlink gerçekleştirilebilir. Yani mesaj alımları periyodik değil sürekli olarak gerçekleşir. Böylece gecikmesiz, gerçek zamanlı şekilde veri aktarımı gerçekleştirilebilir. Bu olması istenen durumdur ancak sürekli dinleme sebebiyle yüksek pil tüketimi olduğundan sadece gerçek zamanlı veri aktarımının kritik olduğu uygulamalarda kullanılır.
+
+Özetle C Sınıfı cihazlar, sürekli olarak mesaj alıp gönderebilirler.
+
+
+
+### LoRa ve LoRaWAN Güvenlik
+IoT’de en önemli konulardan biri de kuşkusuz “güvenlik” kavramıdır. Güvenliksiz bir ağa dahil nesneleri evimizde bulundurmak, kapısı olmayan bir evde yaşamaktan çok da farklı değildir. Zira her iki durumda da tüm yabancılara ve kötü olaylara davetiye çıkaran üst düzey zafiyetler mevcuttur. Bu sebeple “Nesnelerin İnternet”i yapısında güvenlik için de önemli çalışmalara yer verilir.
+
+LoRa’da da verilerin güvenliği için 2 ayrı şifreleme kullanılır.
+
+Bunlardan ilki ağ güvenliği için diğeri uygulama katmanının güvenliği içindir. Uç cihaz ile ağ sunucusu arasındaki verilerin güvenli iletişimi için 128 bitlik benzersiz bir ağ oturum anahtarı kullanılır. Uygulama katmanında ise uçtan uça iletişimde 128 bitlik benzersiz bir uygulama oturum anahtarı kullanılır. Bu 128 bitlik anahtarlar AES algoritmaları kullanılarak üretilir.
+
+LoRa haberleşme teknolojisinin veri aktarım oranının düşük olduğunu da herhangi bir uygulamada kullanmadan önce mutlaka göz önünde bulundurmak gerekir. Küresel çapta farklı frekans bantlarını kullanmakta olan LoRaWAN, Avrupa için on adet frekans kanalı tanımlamıştır. Bu on adet frekans kanalından sekizi 250 bps ile 5,5 kbps arasında aktarım sağlayabilen çoklu veri aktarım hızına sahip kanallardır. Bu sekiz kanal dışında 11 kbps veri aktarım hızına ve 50 kbps aktarım hızına sahip FSK kanalı olarak adlandırılan birer kanal daha mevcuttur.
+
+Son dönemde bir LoRa Gateway cihazına bağlanmış olan binlerce LoRa Node cihazlarının kesintisiz veri aktarımı yapabileceği şeklinde yayılan bilgiler, doğruluk payı oldukça sınırlı bilgilerdir. Binler mertebesinde adetlerde cihazın aynı anda LoRa ağı üzerinden veri aktarımında sıkıntıya neden olabilecek faktörlerin başında Duty-Cycle (görev döngüsü) gelir. Her bir LoRa Node cihazı için veri aktarımı sırasında kanalı meşgul etmesi sebebiyle tanımlanan bir maksimum Duty-Cycle değeri mevcuttur.
+
+Duty-Cycle değeri, haberleşmenin kesintisiz olarak sağlanabilmesi için dikkat edilmesi gereken en önemli faktörlerden birisidir. 868 MHz frekans bandını kullanan Avrupa bölgesinde her bir LoRa Node için Duty-Cycle %1, yani saat başına 36 saniyedir. Bu 36 saniye her bir LoRa Node cihazının bir frekans kanalını bir saat içerisinde meşgul edebileceği en yüksek süredir. LoRa Gateway’e bağlanan LoRa Node sayısı arttıkça, iletimi sağlanan paket miktarı, çakışmalardan dolayı azalmaktadır. 
+
 
 
 
@@ -99,12 +210,9 @@ LPWAN (Low Power Wide Area Network), düşük güç tüketimi ile geniş alan ka
 
 
 
-
-### LoRa'nın Geleceği
-LoRa teknolojisinin sınırlarının ve özelliklerinin doğru bir şekilde anlaşılması gerekliliğini göz önünde bulundurduğumuzda dahi, LoRa haberleşme teknolojisinin önümüzdeki süreçte çok büyük bir potansiyele sahip olduğunu göz ardı etmememiz gerekir. Henüz gelişmekte olan bir teknoloji olmasına karşın özellikle Hollanda’da ışıklandırma, akıllı tarım, atık takibi ve sayaç okuma uygulamalarındaki başarıları bu potansiyelin en büyük kanıtları olmuştur. Son dönemde haberleşme donanımı üreticilerinin LoRa destekli ürün portföyünde görülen çeşitlilik artışı da, LoRa’nın kablosuz haberleşme teknolojilerinin yıldızı olduğunun göstergelerinden bir başkasıdır. 
-
 # KAYNAKÇA
 - https://gsl.com.tr/lora-kablosuz-haberlesmenin-yukselen-yildizi.html
 - https://kalitenetwork.com/blog/lora-ve-lorawan-nedir
 - https://gelecekbt.com/lora
 - https://blog.direnc.net/lora-ve-lorawan-nedir/
+- https://www.mokolora.com/tr/full-understanding-of-lora-and-lorawan/
