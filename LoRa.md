@@ -425,6 +425,16 @@ LPWAN (Low Power Wide Area Network), düşük güç tüketimi ile geniş alan ka
 
 
 
+## Alternatifler
+
+- Eğer uzun pil ömrü + uzun menzil istiyorsan → LoRa / Sigfox / NB-IoT en yakın alternatifler.
+
+- Eğer operatör altyapısı sorun değil diyorsan → NB-IoT / LTE-M daha güvenilir.
+
+- Eğer kısa mesafeli akıllı ev / fabrika otomasyonu istiyorsan → Zigbee, Thread, BLE Mesh.
+
+
+
 # KAYNAKÇA
 - https://gsl.com.tr/lora-kablosuz-haberlesmenin-yukselen-yildizi.html
 - https://kalitenetwork.com/blog/lora-ve-lorawan-nedir
