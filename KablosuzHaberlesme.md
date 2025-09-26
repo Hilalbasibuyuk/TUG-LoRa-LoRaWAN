@@ -39,7 +39,8 @@ Ad-Hoc bağlantıda ise iki cihaz sadece birbiri ile haberleşebilir. Bu durumda
 - 802.11n standartı, 2.4 GHz ve 5 GHz frekanslarını kullanır. Bu standartı kullanarak çıkılabilecek maksimum hız ise 150 Mbps’dir.
 - 802.11ac standartı 5 GHz frekansını kullanır. Bu standartı kullanarak çıkılabilecek maksimum hız ise 780 Mbps’dir.
 
-
+- **Teknolojiler:** IEEE 802.11 standartları ailesine dayanır. Wi-Fi 4 (802.11n), Wi-Fi 5 (802.11ac) ve Wi-Fi 6 (802.11ax) en yaygın versiyonlarıdır.
+- **Frekans Bantları:** 2.4 GHz ve 5 GHz bantları; Wi-Fi 6E ile 6 GHz bandı da kullanılmaya başlanmıştır.
 
 ## Bluetooth
 
@@ -57,11 +58,25 @@ Kısa mesafelerde veri transferi için geliştirilmiş bir teknolojidir. İlk ç
 
 Günümüzde akıllı saatler gibi az güç tüketmesi hedeflenen cihazlar ise Bluetooth Low Energy isimli protokolu kullanmaktadır. Bu protokol, sadece Bluetooth v4.0 ve BLE destekleyen cihazlarla uyumludur, geriye dönük uyumluluğu yoktur.
 
+- **Teknolojiler:** Bluetooth Low Energy (BLE) düşük enerji tüketimi sağlar ve IoT cihazlarında yaygın olarak kullanılır.
+- **Frekans Bandı:** 2.4 GHz ISM bandı.
+
+
+## Hücresel Ağlar
+
+- **Teknolojiler:**
+2G: GSM, EDGE; temel ses ve düşük hızda veri hizmetleri.
+3G: UMTS, CDMA2000; orta hızda veri hizmetleri.
+4G: LTE; yüksek hızlı internet ve geniş bant veri hizmetleri.
+5G: Gelişmiş hız, düşük gecikme ve yüksek bağlantı yoğunluğu ile en yeni nesil.
+- **Kullanım Alanları:** Mobil telefonlar, tabletler, IoT cihazları ve mobil geniş bant hizmetleri.
+- **Frekans Bantları:** 700 MHz – 2.6 GHz (4G) ve 24 GHz – 40 GHz (5G) arası değişen geniş frekans bantları.
+
 
 
 ## NFC ve RFID
 
-NFC, çoğunlukla RFID ile karıştırılmaktadır. RFID, genel anlamıyla nesnelerin radyo dalgaları kullanılarak tanınması için kullanılan teknolojiye verilen addır. Aktif ve pasif tag’leri bulunur. Aktif tag’ler kendi güç kaynağını barındır ve bu sayede daha uzak mesafelerden haberleşme olanağı sunar. Pasif tag’ler okunma sırasında oluşan manyetik alandan beslenerek çalışırlar. Aktif ve pasif tag’lere en güzel örnek olarak, köprü ve otoyol gişelerinde kullanılan OGS ve HGS sistemleri verilebilir. OGS, cihazı içinde pil barındıran büyük bir cihaz iken HGS kart veya etiket şeklindedir. Üç farklı frekans bandında çalışan RFID tag’leri bulunmaktadır:
+NFC(Near Field Communication), çoğunlukla RFID ile karıştırılmaktadır. RFID, genel anlamıyla nesnelerin radyo dalgaları kullanılarak tanınması için kullanılan teknolojiye verilen addır. Aktif ve pasif tag’leri bulunur. Aktif tag’ler kendi güç kaynağını barındır ve bu sayede daha uzak mesafelerden haberleşme olanağı sunar. Pasif tag’ler okunma sırasında oluşan manyetik alandan beslenerek çalışırlar. Aktif ve pasif tag’lere en güzel örnek olarak, köprü ve otoyol gişelerinde kullanılan OGS ve HGS sistemleri verilebilir. OGS, cihazı içinde pil barındıran büyük bir cihaz iken HGS kart veya etiket şeklindedir. Üç farklı frekans bandında çalışan RFID tag’leri bulunmaktadır:
 
 - Low Frequency (LF) 125 -134 kHz
 - High Frequency (HF)13.56 MHz
@@ -71,11 +86,29 @@ NFC, çoğunlukla RFID ile karıştırılmaktadır. RFID, genel anlamıyla nesne
 
 NFC cihazlar üç farklı modda çalışabilir: NFC kart emülasyon modu, yazıcı/okuyucu modu ve peer-to-peer modu. Kart emülasyon modunda akıllı telefon gibi cihazlar kart gibi davranarak alışverişte ödeme yapma vb. şekillerde kullanılabilir. Yazıcı/okuyucu modunda, NFC cihaz bir NFC kartı yada tag’i okuma ve yazmada kullanılabilir. Peer-to-peer modunda ise iki NFC cihaz arasında dosya aktarımı gibi protokoller, NFC kullanılarak başlatılır.
 
-NFC kartlar küçük miktarda belleğe sahiptir. Bu bellek sadece okunabilir yada tekrar yazılabilir yapıca olabilir.
+NFC kartlar küçük miktarda belleğe sahiptir. Bu bellek sadece okunabilir yada tekrar yazılabilir yapıca olabilir. Kısa mesafeli ödeme sistemleri, kimlik doğrulama ve veri transferi (örneğin, temassız kredi kartları, akıllı telefon ödemeleri) alanlarında kullanılır. Frekans Bandı, 13.56 MHz'dir.
+
+
+## Uydu İletişimi:
+
+- **Kullanım Alanları:** Küresel iletişim, yayıncılık, GPS (küresel konumlama sistemi), uzaktan veri aktarımı.
+- **Frekans Bantları:** L-bandı, S-bandı, C-bandı, X-bandı, Ku-bandı ve Ka-bandı gibi çeşitli frekanslar.
+
+
 
 
 ## Zigbee Modülleri
 Zigbee modülleri sağladığı düşük güç tüketimi ve geniş kapsama alanı gerektiren uygulamalar için tasarlanmış kablosuz haberleşme teknolojisidir. Endüstriyel otomasyon, enerji yönetimi, akıllı ev sistemleri ve sensör ağları gibi IoT tabanlı çözümlerde yaygın olarak kullanılır. Zigbee modülleri, mesh ağ topolojisini destekleyerek cihazlar arasında doğrudan veya dolaylı olarak veri aktarımı sağlar, böylece ağdaki cihaz sayısı arttıkça kapsama alanı genişler ve iletişim güvenliği artar.
+
+- **Kullanım Alanları:** Düşük güç tüketimi gerektiren ve düşük veri hızına ihtiyaç duyan IoT uygulamaları (örneğin, ev otomasyonu, sensör ağları).
+- **Frekans Bandı:** 2.4 GHz ISM bandı.
+
+
+## Z-Wave:
+
+- **Kullanım Alanları:** Ev otomasyonu, güvenlik sistemleri ve enerji yönetimi.
+- **Frekans Bandı:** 908.42 MHz (ABD), 868.42 MHz (Avrupa).
+
 
 
 
