@@ -141,7 +141,29 @@ LoRa’nın, LoRa uç cihazları ve LoRaWAN’dan oluştuğundan bahsetmiştik. 
 
 Resim kaynakçası -> https://kalitenetwork.com/blog/lora-ve-lorawan-nedir
 
+---
 
+## LoRa Katılım Prosedürü
+LoRa iletişim ağına katılan yeni bir cihazın aktivasyonu, aşağıda listelenen iki işlemden herhangi biri ile tamamlanabilir.:
+
+- Kişiselleştirme ile Aktivasyon (ABP)
+- Havadan Aktivasyon (OTAA)
+Aktivasyon işleminin sonunda, hem Ağ oturum anahtarı hem de Uygulama oturum anahtarı yeni cihazla paylaşılırdı, şimdi Son düğüm cihazı olarak anılacak olan.
+
+### Kişiselleştirme ile etkinleştirme (ABP)
+LoRa ağına katılmanın ABP yöntemi, AppEUI gibi bazı belirli oturum anahtarlarına sahip olmadan yeni bir cihazın eklenmesini içerir., DevEUI, vb. onunla paylaştı. Bunun yerine, dahil olmak üzere oturum anahtarları, FNwk_SIntKey ve yaklaşık üç kişi daha, doğrudan Son cihazda depolanır. Bir cihaz, yalnızca LoRa ağ katılımı gerekli bilgilerine sahipse ABP işlemi aracılığıyla etkinleştirilebilir., başlangıçta.
+
+### Havadan Aktivasyon (OTAA)
+Kablosuz etkinleştirme prosedürü, bir Uç Cihaz ile Ağ sunucusu arasındaki doğrudan iletişimi içerir.. Bu etkinleştirme işlemi yalnızca Sonlandırma cihazı sıfırlandığında tercih edilir.
+
+OTAA süreci şunları içerir::
+
+Yeni cihaz, LoRaWAN ağına istekte bulunan belirli bir mesajı LoRa ağ sunucusuna gönderir..
+Ağ sunucusu mesajı alır ve geçersiz veya geçerli olarak yorumlar.. geçerliyse, bir kimlik doğrulama veya oturum anahtarı oluşturulur
+
+
+
+---
 
 
 ### LORAWAN Haberleşme Sistemi
@@ -154,6 +176,14 @@ Ayrıca sahadaki modbus sistemler de LoRa kablosuz ağı üzerinden SCADA sistem
 
 
 ## LoRaWAN Sınıfları
+
+
+<img width="744" height="717" alt="image" src="https://github.com/user-attachments/assets/64a5db7c-e89b-412a-a112-501a06f5aa51" />
+
+
+Resim kaynakçası -> https://www.mokolora.com/tr/full-understanding-of-lora-and-lorawan/#elementor-toc__heading-anchor-50
+
+
 
 ### A Sınıfı (Tetikleme ile dinleme, Düşük Pil Tüketimi)
 Tüm LoRa cihazlar A sınıfı ile uyumludur. A sınıfı cihazlarda pil tüketimi en az seviyede tutularak güç konusunda büyük oranda tasarruf sağlamak esastır. Uç cihazlar (sensörler) sürekli olarak gateway’e (ağ geçidi) mesaj gönderebilirler. Yani uplink (uç cihaz -> gateway) sürekli olarak yapılabilir ancak cihazlar ağı dinleme anlamında sürekli uyku modundadır. Güç konusundaki büyük avantaj bu durumdan kaynaklanır. Çünkü uç cihazlar ağı dinlemek için bir pil tüketimi gerçekleştirmez. Bu sebeple gatewayden uç cihaza mesaj iletimi her zaman olamaz. Bir downlink (gateway -> uç cihaz) sadece bir uplink sonrasında gerçekleştirilebilir. Gateway uç cihazdan gelen veriyi servera (sunucu) yönlendirir. Sunucudan ise verinin alındığına dair bir ACK mesajı + gerekli yanıt döner, gateway bunu uç cihaza LoRa paketi halinde sunar. Böylece bir uplink işleminin hemen ardından bir downlink gerçekleştirilmiş olur.
@@ -180,6 +210,124 @@ Bu sınıfa dahil olan cihazlarda sürekli olarak dinleme gerçekleştirilir bö
 
 Özetle C Sınıfı cihazlar, sürekli olarak mesaj alıp gönderebilirler.
 
+### Kimlik Sunucusu
+Kimlik sunucusu, LoRa ağına katılan kullanıcıların kimliğini tespit eder. Bir LoRaWAN ağında, Kimlik sunucusu cihazları kaydeder, ağ geçitleri, kullanıcılar ve uygulamalar. Bir bakıma, Identity, LoRaWAN ağının belkemiğidir, çünkü birden fazla cihazda ve dünyanın farklı yerlerinde çalışabilmesini sağlar..
+
+
+### Ağ Bileşenleri ve İşleyiş
+
+- **Uç cihazlar (end nodes)**: Sensör gibi aygıtlardır, genellikle pil ile çalışır ve düşük enerjiyle veri gönderir. 
+
+- **Ağ geçitleri (gateways)**: Uç cihazlardan gelen sinyalleri alır, internet backbone’una iletir. 
+
+- **Ağ sunucusu**: Verilerin yönlendirilmesini, kimlik doğrulamasını ve güvenliği sağlar. 
+
+- **Uygulama sunucusu**: Nihai verilerin çözümlenip kullanıma sunulduğu katmandır.
+
+
+
+### Modülasyon
+LoRa, Chirp Spread Spectrum'dan türetilen yayılı spektrumun patent modülasyon projesidir.. Chirp yayılma spektrumu, hassasiyet için belirli bir bant genişliği içinde iletimin veri hızını değiştirerek LoRaWAN iletişim ağının frekansını modüle eder.. Bu, ağın verimliliğini optimize eder ve aynı zamanda belirli bir bant genişliğini korurken aynı zamanda LoRa ağının iletişim aralığını genişletir..
+
+
+
+### Tablo
+
+<img width="741" height="459" alt="image" src="https://github.com/user-attachments/assets/92223eef-55af-4bc2-9bf3-292a33c62295" />
+Resim kaynakçası -> https://www.mokolora.com/tr/full-understanding-of-lora-and-lorawan/#elementor-toc__heading-anchor-50
+
+
+LoRaWAN Ağı, lisanslı veya lisanssız olabilen Radyo kablosuz frekans bantları üzerinden iletişim iletir.. Lisanssız Radyo frekansları ücretsizdir ancak, lisanslı frekanslara kıyasla parazite karşı daha hassastır.
+
+LoRa ve LoRaWAN iletişiminin etkinliğinin sırrı, veriler belirli bir frekans üzerinden iletilirken Frekansları modüle etmek için Chip Spread spektrumunu kullanan LoRaWAN iletişim ağının dahice tasarımıdır.. Öyle bir şekilde ki, LoRa iletişimleri bile lisanssız Radyo Frekansı üzerinden çok az veya hiç girişim şansı yok. Eşzamanlı olarak bağlantıyı daha ucuz ama daha verimli hale getirir ve verilerin uzun mesafelerde iletilmesine olanak tanır.
+
+LoRa ve LoRaWAN iletişim ağlarında, belirli frekanslar, birçok farklı LoRa uygulamasına özgü LoRa radyoları ve LoRa saatleri aracılığıyla yapılandırılabilir.
+
+**Lisanssız MHz Radyo Frekanslarına Bazı Örnekler:**
+
+- Asya: 169MHz, 433MHz
+
+- Kuzey Amerika: 915 MHz
+
+
+### Lisanssız Frekans kullanan LoRa için düzenleyici hususlar
+LoRa ve LoRaWAN, radyo frekans bantları üzerinden veri iletişimi iletirken. LoRa Ağı öncelikle lisanssız frekansları kullanır, yani, aracılığıyla sinyal yayınlamak için bir devlet lisansı almanız gerekmeyen bu frekanslar. Lisanssız frekanslar, her coğrafi bölgeye ve konuma özeldir.. Güvenlik ve verimlilik amaçları için. Her bölgenin hükümeti, bulunduğunuz yerde belirtilmeyen frekans bandı üzerinden yayın yapmaktan büyük ölçüde hoşnut değildir.. Öyleyse, LoRa ağını kullanırken, LoRa telsizleriniz ve saatleriniz, bulunduğunuz yere özel frekans bantlarına göre yapılandırılmalıdır.
+
+
+### LoRaWAN bant genişliği değerlendirmesi
+
+<img width="841" height="425" alt="image" src="https://github.com/user-attachments/assets/21c699e1-4aee-4e11-b4ce-af968ed23ab2" />
+Resim kaynakçası -> https://www.mokolora.com/tr/full-understanding-of-lora-and-lorawan/#elementor-toc__heading-anchor-50
+
+
+LoRaWAN ağı Veri aktarım hızının sınırı yaklaşık 100 bayt, Tek bir Uç düğüm cihazı ve ağ geçidi arasında bir seferde yalnızca bu kadar veri yükü etkin bir şekilde iletilebilir. LoRaWAN ağı genellikle uç çoklu uç düğüm cihazları ve tek bir ağ geçidi arasında eşzamanlı iletişimi içerir..
+
+
+
+### Uyarlanabilir veri hızı
+
+<img width="429" height="147" alt="image" src="https://github.com/user-attachments/assets/b4e01e07-20b5-435f-8bf2-5b725476a582" />
+Resim kaynakçası -> https://www.mokolora.com/tr/full-understanding-of-lora-and-lorawan/#elementor-toc__heading-anchor-50
+
+
+
+LoRaWAN iletişim ağının veri hızı, daha fazla hassasiyet için veri hızı alışverişinde dinamizmi ve ayrıca yalnızca belirli verilerin Ağ seçimi anlamında uyarlanabilir., LoRaWAN iletişiminde azaltılmış veri hızına yol açar. Yayılı spektrum modülasyonlu LoRaWAN frekansı, farklı veri hızlarının birbiriyle karışmasını önler. Böylece, ağ geçitlerinin ve genel ağın verimliliğini optimize etmek.
+
+
+
+### LoRa aralığı
+
+<img width="588" height="290" alt="image" src="https://github.com/user-attachments/assets/612e131c-9e53-4306-952f-e3f08876dcf7" />
+Resim kaynakçası -> https://www.mokolora.com/tr/full-understanding-of-lora-and-lorawan/#elementor-toc__heading-anchor-50
+
+
+LoRa teknolojisi, küçük boyutlu verilerin uzun mesafelerde iletimi için menzili artırmak ve güç tüketimini azaltmak için Bant Genişliği konsantrasyonunu azaltmaya dayanmaktadır..
+
+LoRa-Range, fiziksel konumdan da etkilenebilir. Belirli bir LoRaWAN sürümünün menzili, bina kümeleriyle dolu kentleşmiş bir toplulukta daha kısa olacaktır., daha az ve daha fazla aralıklı ek binaya sahip olan ve dolayısıyla, iletim frekansı tıkanıklığında daha az şans.
+
+
+
+
+### LoRaWAN rakiplerinden daha mı iyi?
+
+LoRa ve LoRaWAN iletişim ağları diğerlerinden daha iyi.
+
+LoRaWAN, en yaygın kullanılan Düşük güçlü kablosuz geniş alan ağı olmasının yanı sıra, NB-IoT gibi diğer LPWAN bağlantı seçenekleri LoRaWAN kadar uygun maliyetli değildir. LoRaWAN iletişim ağının bant genişliği, diğer LPWAN'lardan nispeten daha düşüktür ve bu, rakiplerine kıyasla daha fazla kapsama alanı ve daha uzun menzil sağlar.. Ayrıca, LoRaWAN, Farming'deki rakiplerine kıyasla daha geniş bir alanda uygulanabilir., LoRaWAN'ın endüstrilere ve normal ev hizmetlerine sulama için akıllı su sayacında uygulanmasında. LoRaWAN sensörleri ve teknolojisi, LoRa teknolojisinin aşağıdakiler gibi belirli atmosferik koşulları izlemek için kullanılabileceği akıllı bina uygulamasına da genişliyor.; sıcaklık, nem. LoRa teknolojisinin binaların güvenliği ve genel bakımındaki uygulaması da hızla benimseniyor. Buna karşılık, Karşılaştırmada diğer LPWAN'ların uygulanması çok sınırlıdır.
+
+
+
+### LoRa ve LoRaWAN'ın Özellikleri
+- LoRaWAN ağının bant genişliği 125 kHz
+- LoRa tabanlı uç cihazların minimum ortalama pil ömrü, 7 yıllar.
+- Ağ geçitlerinin tepe ve uyku akımı yaklaşık 32 sırasıyla mili amper ve 1 mikro amper.
+- LoRaWAN ağında iletilen tüm veriler iki kez şifrelenir
+- Cihazlar, LoRaWAN ağında yaklaşık 10Km'lik çok uzun bir aralıkta düşük güç tüketimi ile iletişim kurabilir ve veri iletebilir..
+- LoRaWAN ağında, veriler radyo frekansı üzerinden aktarılır (Lisanssız frekans bantları daha yaygın olarak kullanılır)
+- LoRa ağı, Bitiş düğümleri gibi bileşenlerden oluşur., ağ geçitleri, Ağ sunucuları, Kimlik sunucuları, LoRa uygulamaları ve yazılımı.
+- LoRaWAN iletişim ağı çok uygun maliyetlidir.
+
+
+### Avantajları
+- Uzun menzilli iletişim (şehir dışı alanlarda kilometrelerce)
+- Düşük enerji tüketimi → uzun pil ömrü
+- Girişime karşı dirençli modülasyon yöntemleri sayesinde kararlılık
+- Maliyet açısından cazip (lisanssız frekans kullanımı, altyapı maliyeti düşük)
+
+
+### Dezavantajları
+- LoRaWAN iletişim ağının veri hızı düşük → büyük veri aktarımı için uygun değil 
+- Veri iletiminin Lisanssız frekans bantları kanalları parazitlere karşı hassas olabilir.
+- LoRaWAN ağının tasarımı, büyük veri yükünün iletimini desteklemiyor.
+- Uçtan uca paket çözümü sağlayan hazır ürün seçeneklerinin sınırlılığı
+
+
+
+
+### LoRa ve MQTT
+MQTT, ağ sunucuları ve ağ geçidi arasındaki iletişimi sağlamak için kullanılır. Veriler, MQTT protokolü ile birden fazla cihaz arasında iletilir. MQTT protokolü genellikle güvenilir olmayan ağlardaki parazitleri azaltmak için kullanılır., kesintilere duyarlı. Sunucu, MQTT aracısına okuma ve yazma yeteneğine sahip bu mesajları ve istemcileri toplar.. Müşterinin yazmak veya abone olmak istediği konuları belirlemesi gerekir.. Tüm konular seçilebilir. Çoğu zaman, MQTT aracısı, sunucunun makinesinde çalışır. Ağ geçidi, cihazdan alınan görünür yükü, bir yukarı bağlantının iletildiği frekans ve zaman gibi ek bilgilerle birlikte yazacaktır.. MQTT, cihazların, bir müşterinin anlayabileceği şekilde basit yollarla konulmuş veri özel LoRaWAN işlemleri için girişimci veri entegrasyonuna yardımcı olur.. MQTT aracısı, iyi yapılandırıldığında tehlikeli ağ geçitlerinin diğer ağ geçitlerinden gelen yukarı bağlantılara erişmesini de engeller.
+
+
+
 
 
 ### LoRa ve LoRaWAN Güvenlik
@@ -194,6 +342,24 @@ LoRa haberleşme teknolojisinin veri aktarım oranının düşük olduğunu da h
 Son dönemde bir LoRa Gateway cihazına bağlanmış olan binlerce LoRa Node cihazlarının kesintisiz veri aktarımı yapabileceği şeklinde yayılan bilgiler, doğruluk payı oldukça sınırlı bilgilerdir. Binler mertebesinde adetlerde cihazın aynı anda LoRa ağı üzerinden veri aktarımında sıkıntıya neden olabilecek faktörlerin başında Duty-Cycle (görev döngüsü) gelir. Her bir LoRa Node cihazı için veri aktarımı sırasında kanalı meşgul etmesi sebebiyle tanımlanan bir maksimum Duty-Cycle değeri mevcuttur.
 
 Duty-Cycle değeri, haberleşmenin kesintisiz olarak sağlanabilmesi için dikkat edilmesi gereken en önemli faktörlerden birisidir. 868 MHz frekans bandını kullanan Avrupa bölgesinde her bir LoRa Node için Duty-Cycle %1, yani saat başına 36 saniyedir. Bu 36 saniye her bir LoRa Node cihazının bir frekans kanalını bir saat içerisinde meşgul edebileceği en yüksek süredir. LoRa Gateway’e bağlanan LoRa Node sayısı arttıkça, iletimi sağlanan paket miktarı, çakışmalardan dolayı azalmaktadır. 
+
+
+### LoRa Araç Kiti Talimatları
+- Arduino IDE'yi kurun ve 340 sürmek
+- Kurulu Arduino için bir LoRa kitaplığı yükleyin.
+- LG01-N ağ geçidini kurmak için ağ ortamını optimize edin.
+- Bileşenleri düzenleyin ve LG01-N ağ geçidini internete en uygun şekilde bağlayın.
+- SSH kullanarak LG01-N'ye erişebilmek için bir macun aracı indirin
+- LoRaWAN ağını test edin
+- TTN sunucusunda bir ağ geçidi kurun
+- LG01-N ağ geçidini kurun
+- LoRaWAN ağ sunucusuna ağ geçidi bağlantısını kurun.
+- Ağ geçidinin LoRa iletişim frekansını kendi konumunuza göre yapılandırın..
+- Cayenne uygulama sunucusuyla bağlantı kurun
+- LoRa uygulamasından uç cihazlara veri iletişimi ile tekrarı kontrol edin
+- Ağ sisteminde sorun giderme.
+- LoRa Tabanlı uç cihaz şifrelemesi ve GPS kalkanları kurulumu.
+- ABP cihazını TTN'de kurun ve UNO'ya yükleyin
 
 
 
