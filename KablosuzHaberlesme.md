@@ -1,5 +1,6 @@
 # Kablosuz Haberleşme
 
+
 Kablosuz haberleşme, adından da anlaşıldığı gibi veri iletiminin herhangi bir kablo olmadan gerçekleştirilmesine verilen addır. Genellikle veri transferi için radyo dalgaları kullanılır. Genellikle dememin sebebi, kızılötesi gibi radyo dalgaları yerine ışık kullanan teknolojilerin halen hayatımızda olmasından dolayıdır. Evimizde kullandığımız televizyon gibi cihazların uzaktan kumandaları kızılötesi ışık ile haberleşme yapar. Hatta hatırlayacak olursak 2000’li yıllarda kullandığımız cep telefonları, bluetooth yerine kızılötesi haberleşme ile dosya transferi dahi yapabilmekteydi.
 
 
