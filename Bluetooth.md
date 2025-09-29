@@ -148,6 +148,83 @@ Bu sistem aslında **“Bluetooth Mesh / Long Range Gateway”** gibi düşünü
 - **Raspberry Pi**: veri alıcı, protokol çevirici, köprü.
 
 
+---
+
+
+
+## Bluetooth C# Kodu
+
+Bluetooth üzerinden C# ile kablosuz iletişim kurmak istiyorsanız, temel olarak iki yaklaşım vardır:
+
+- Windows’un yerleşik Bluetooth API’lerini kullanmak (Windows.Devices.Bluetooth namespace’i).
+
+- Üçüncü taraf kütüphaneler kullanmak (32feet.NET)
+
+**En yaygın ve pratik yöntem genellikle 32feet.NET kütüphanesidir. Bu kütüphane, hem klasik Bluetooth hem de RFCOMM (seri port emülasyonu) üzerinden cihazlarla iletişim kurmayı kolaylaştırır.**
+
+
+
+
+### NuGet paketi kurulumu
+
+
+```charp
+Install-Package 32feet
+```
+
+
+### Bluetooth Cihazlarını Listeleme
+
+
+```charp
+using InTheHand.Net.Sockets;
+using InTheHand.Net.Bluetooth;
+
+class Program
+{
+    static void Main()
+    {
+        BluetoothClient client = new BluetoothClient();
+        BluetoothDeviceInfo[] devices = client.DiscoverDevices();
+
+        Console.WriteLine("Cihazlar:");
+        foreach (var device in devices)
+        {
+            Console.WriteLine($"{device.DeviceName} - {device.DeviceAddress}");
+        }
+    }
+}
+```
+
+
+### Bluetooth’a Bağlanma ve Veri Gönderme
+
+```charp
+using System;
+using System.Text;
+using InTheHand.Net.Sockets;
+using InTheHand.Net.Bluetooth;
+
+class Program
+{
+    static void Main()
+    {
+        BluetoothAddress address = BluetoothAddress.Parse("XX:XX:XX:XX:XX:XX"); // Bluetooth adresi
+        Guid serviceClass = BluetoothService.SerialPort; // Seri port servisi
+
+        using (BluetoothClient client = new BluetoothClient())
+        {
+            client.Connect(address, serviceClass);
+            using (var stream = client.GetStream())
+            {
+                byte[] message = Encoding.ASCII.GetBytes("Merhaba Bluetooth!");
+                stream.Write(message, 0, message.Length);
+                Console.WriteLine("Mesaj gönderildi.");
+            }
+        }
+    }
+}
+```
 
 
 
