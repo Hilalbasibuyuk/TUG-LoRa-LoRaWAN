@@ -139,6 +139,8 @@ Bu sistem aslında **“Bluetooth Mesh / Long Range Gateway”** gibi düşünü
 **LoRa çok yavaş(genellikle 0.3–50 kbps), bluetooth üzerinden yüksek veri aktarırsak çok yavaş oluyor. LoRa paket bazlı çalışır. Eğer sürekli ve hızlı veri akışı istersen gecikmeler olabilir. Bluetooth verisini direkt LoRa’ya gönderemeyiz, onu bir protokole (örneğin seri veri) çevirmemiz gerekir. Yani LoRa “tünel” gibi çalışacak.**
 
 
+### Kısaca 
+
 - **Bluetooth**: kısa mesafe, düşük güç, cihaz eşleştirme.
 
 - **LoRa**: uzun mesafe, düşük veri hızı, tek yönlü veya çift yönlü veri aktarımı.
