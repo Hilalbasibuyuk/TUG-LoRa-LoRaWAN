@@ -323,9 +323,9 @@ class SenderBridge
     static void Main()
     {
         // Bluetooth seri portu (RFCOMM bağlanınca oluşur)
-        var bt = new SerialPort("/dev/rfcomm0", 9600);
+        var bt = new SerialPort("/dev/rfcomm0", 9600); // Bluetooth üzerinden gelen/verilen veri.
         // LoRa seri portu (UART'a bağlı modül)
-        var lora = new SerialPort("/dev/serial0", 9600);
+        var lora = new SerialPort("/dev/serial0", 9600); // LoRa modülüne giden UART hattı.
 
         bt.Open();
         lora.Open();
@@ -392,7 +392,29 @@ class ReceiverBridge
 
 
 
-**LoRa modülünün pi'ye UART üzerinden bağlı olması gerekiyor. Olduğu portu da kodda belirtmemiz lazım**
+**LoRa modülünün pi'ye UART üzerinden bağlı olması gerekiyor.**
+
+
+## Raspberry Pi Üzerinde Bluetooth – LoRa Köprüsü
+### 1. Donanım Bağlantısı
+
+LoRa modülü UART üzerinden Raspberry Pi’ye bağlanır. Bağlantı şu şekilde yapılır: 
+- Raspberry Pi GPIO14 (TXD) → LoRa RX
+- Raspberry Pi GPIO15 (RXD) → LoRa TX
+- Raspberry Pi GND → LoRa GND
+- (Opsiyonel) LoRa modül 5V ise level shifter kullanılır.
+
+Bu bağlantı sayesinde Raspberry Pi, LoRa modülüne UART protokolü üzerinden veri gönderebilir/alabilir.
+
+
+
+### UART Portunun Etkinleştirilmesi
+
+Raspberry Pi’de varsayılan olarak UART kapalı olabilir. Açmak için:
+
+```bash
+sudo raspi-config
+```
 
 
 
