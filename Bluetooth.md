@@ -304,6 +304,92 @@ class Program
 
 
 
+### Raspberry Pi Tarafında Bluetooth Mesajını Yakalama
+
+Bizim C# kodumuzun gönderdiği "Merhaba Bluetooth!" mesajı, Raspberry Pi’ye seri port üzerinden düşecek (/dev/rfcomm0).
+Pi tarafında bu mesajı yakalayıp LoRa’ya aktarmamız lazım.
+
+
+```charp
+using System;
+using System.IO.Ports;
+
+class SenderBridge
+{
+    static void Main()
+    {
+        // Bluetooth seri portu (RFCOMM bağlanınca oluşur)
+        var bt = new SerialPort("/dev/rfcomm0", 9600);
+        // LoRa seri portu (UART'a bağlı modül)
+        var lora = new SerialPort("/dev/serial0", 9600);
+
+        bt.Open();
+        lora.Open();
+
+        Console.WriteLine("Bluetooth → LoRa köprüsü başlatıldı...");
+
+        while (true)
+        {
+            try
+            {
+                string line = bt.ReadLine(); // Bluetooth’tan oku
+                if (!string.IsNullOrWhiteSpace(line))
+                {
+                    Console.WriteLine("Bluetooth’tan geldi: " + line);
+                    lora.WriteLine(line); // LoRa’ya aktar
+                    Console.WriteLine("LoRa’ya gönderildi.");
+                }
+            }
+            catch (TimeoutException) { }
+        }
+    }
+}
+```
+
+
+### Karşı Taraftaki Raspberry Pi (LoRa Alıcı)
+
+Bu Pi, LoRa’dan gelen veriyi okuyup Bluetooth üzerinden çıkış yapacak.
+
+```charp
+using System;
+using System.IO.Ports;
+
+class ReceiverBridge
+{
+    static void Main()
+    {
+        var lora = new SerialPort("/dev/serial0", 9600);
+        var bt   = new SerialPort("/dev/rfcomm0", 9600);
+
+        lora.Open();
+        bt.Open();
+
+        Console.WriteLine("LoRa → Bluetooth köprüsü başlatıldı...");
+
+        while (true)
+        {
+            try
+            {
+                string line = lora.ReadLine(); // LoRa’dan oku
+                if (!string.IsNullOrWhiteSpace(line))
+                {
+                    Console.WriteLine("LoRa’dan geldi: " + line);
+                    bt.WriteLine(line); // Bluetooth’a aktar
+                    Console.WriteLine("Bluetooth’a gönderildi.");
+                }
+            }
+            catch (TimeoutException) { }
+        }
+    }
+}
+```
+
+
+
+
+**LoRa modülünün pi'ye UART üzerinden bağlı olması gerekiyor. Olduğu portu da kodda belirtmemiz lazım**
+
 
 
 # KAYNAKÇA
