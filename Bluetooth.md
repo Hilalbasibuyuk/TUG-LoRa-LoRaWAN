@@ -417,6 +417,10 @@ sudo raspi-config
 ```
 
 
+---
+
+### ESP32
+
 
 # KAYNAKÇA
 - https://www.geeksforgeeks.org/computer-networks/bluetooth/
