@@ -152,6 +152,8 @@ Bu sistem aslında **“Bluetooth Mesh / Long Range Gateway”** gibi düşünü
 ### Şema gösterimi
 
 <img width="1198" height="583" alt="image" src="https://github.com/user-attachments/assets/df3dc915-e77f-4ddc-b189-4fdb015db8cf" />
+
+
 ---
 
 ## Bluetooth C# Kodu
