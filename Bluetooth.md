@@ -162,45 +162,24 @@ Bluetooth üzerinden C# ile kablosuz iletişim kurmak istiyorsanız, temel olara
 
 **En yaygın ve pratik yöntem genellikle 32feet.NET kütüphanesidir. Bu kütüphane, hem klasik Bluetooth hem de RFCOMM (seri port emülasyonu) üzerinden cihazlarla iletişim kurmayı kolaylaştırır.**
 
-
-
-
-### NuGet paketi kurulumu
-
-
+### Classic Bluetooth (RFCOMM / SPP)
 ```charp
-Install-Package 32feet
+dotnet add package InTheHand.Net.Bluetooth
 ```
+
+### BLE (GATT)
+```charp
+dotnet add package InTheHand.BluetoothLE
+```
+
 
 
 ### Bluetooth Cihazlarını Listeleme
 
 
 ```charp
-using InTheHand.Net.Sockets;
-using InTheHand.Net.Bluetooth;
-
-class Program
-{
-    static void Main()
-    {
-        BluetoothClient client = new BluetoothClient();
-        BluetoothDeviceInfo[] devices = client.DiscoverDevices();
-
-        Console.WriteLine("Cihazlar:");
-        foreach (var device in devices)
-        {
-            Console.WriteLine($"{device.DeviceName} - {device.DeviceAddress}");
-        }
-    }
-}
-```
-
-
-### Bluetooth’a Bağlanma ve Veri Gönderme
-
-```charp
 using System;
+using System.Linq;
 using System.Text;
 using InTheHand.Net.Sockets;
 using InTheHand.Net.Bluetooth;
@@ -209,22 +188,120 @@ class Program
 {
     static void Main()
     {
-        BluetoothAddress address = BluetoothAddress.Parse("XX:XX:XX:XX:XX:XX"); // Bluetooth adresi
-        Guid serviceClass = BluetoothService.SerialPort; // Seri port servisi
+        Console.WriteLine("Cihazlar aranıyor...");
+        using var cli = new BluetoothClient();
+        var devices = cli.DiscoverDevices(); // IReadOnlyCollection<BluetoothDeviceInfo>
 
-        using (BluetoothClient client = new BluetoothClient())
+        if (devices == null || devices.Count == 0)
         {
-            client.Connect(address, serviceClass);
-            using (var stream = client.GetStream())
-            {
-                byte[] message = Encoding.ASCII.GetBytes("Merhaba Bluetooth!");
-                stream.Write(message, 0, message.Length);
-                Console.WriteLine("Mesaj gönderildi.");
-            }
+            Console.WriteLine("Hiç cihaz bulunamadı.");
+            return;
+        }
+
+        int i = 0;
+        foreach (var d in devices)
+        {
+            Console.WriteLine($"{i}: {d.DeviceName} - {d.DeviceAddress}");
+            i++;
+        }
+
+        Console.Write("Bağlanmak için index gir: ");
+        if (!int.TryParse(Console.ReadLine(), out int idx) || idx < 0 || idx >= devices.Count)
+        {
+            Console.WriteLine("Geçersiz index.");
+            return;
+        }
+
+        var device = devices.ElementAt(idx); // ElementAt için System.Linq gerekli
+        Console.WriteLine($"Seçildi: {device.DeviceName} - {device.DeviceAddress}");
+
+        try
+        {
+            cli.Connect(device.DeviceAddress, BluetoothService.SerialPort);
+            using var stream = cli.GetStream();
+            var data = Encoding.ASCII.GetBytes("Merhaba Bluetooth!");
+            stream.Write(data, 0, data.Length);
+            Console.WriteLine("Mesaj gönderildi.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Bağlantı hatası: " + ex.Message);
         }
     }
 }
 ```
+
+
+### Bluetooth’a Bağlanma ve Veri Gönderme (Raspberry'e bağlanırken bu kodu çalıştırabiliriz)
+
+```charp
+using System;
+using System.Linq;
+using System.Text;
+using InTheHand.Net.Sockets;
+using InTheHand.Net.Bluetooth;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Cihazlar aranıyor...");
+        using var cli = new BluetoothClient();
+        var devices = cli.DiscoverDevices().ToList();
+
+        if (devices.Count == 0)
+        {
+            Console.WriteLine("Hiç cihaz bulunamadı.");
+            return;
+        }
+
+        for (int i = 0; i < devices.Count; i++)
+        {
+            Console.WriteLine($"{i}: {devices[i].DeviceName} - {devices[i].DeviceAddress}");
+        }
+
+        Console.Write("Bağlanmak için index gir: ");
+        if (!int.TryParse(Console.ReadLine(), out int idx) || idx < 0 || idx >= devices.Count)
+        {
+            Console.WriteLine("Geçersiz index.");
+            return;
+        }
+
+        var device = devices[idx];
+        Console.WriteLine($"Seçildi: {device.DeviceName} - {device.DeviceAddress}");
+
+        try
+        {
+            // SPP servisine bağlan
+            cli.Connect(device.DeviceAddress, BluetoothService.SerialPort);
+            Console.WriteLine("Bağlantı başarılı!");
+
+            using var stream = cli.GetStream();
+
+            // Mesaj gönder
+            string mesaj = "Merhaba Bluetooth!";
+            byte[] data = Encoding.ASCII.GetBytes(mesaj);
+            stream.Write(data, 0, data.Length);
+            Console.WriteLine($"Mesaj gönderildi: {mesaj}");
+
+            // İstersen karşı taraftan cevap oku
+            byte[] buffer = new byte[256];
+            int bytesRead = stream.Read(buffer, 0, buffer.Length);
+            if (bytesRead > 0)
+            {
+                string cevap = Encoding.ASCII.GetString(buffer, 0, bytesRead);
+                Console.WriteLine($"Cevap alındı: {cevap}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Bağlantı hatası: " + ex.Message);
+        }
+    }
+}
+```
+
+
 
 
 
