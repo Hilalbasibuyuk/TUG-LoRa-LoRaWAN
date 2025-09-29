@@ -112,6 +112,41 @@ Resim kaynakçası -> https://www.geeksforgeeks.org/computer-networks/bluetooth/
 
 ---
 
+# Bizim Projemiz
+
+## Amacımız
+Bluetooth cihazlarının menzilini artırmak için LoRa’yı bir köprü (bridge) olarak kullanmak
+
+## Mantık ve Temel Prensip
+
+Bluetooth cihazları genellikle 10–100 metre arasında çalışır (Bluetooth Classic ve BLE farkları var). LoRa ise kilometrelerce menzile çıkabilir (şehir içi 2–5 km, açık alan 10–15 km).
+
+**Bizim sistemimiz şu şekilde çalışacak:**
+
+- Bir cihazın Bluetooth verisi Raspberry Pi’ye gelir.
+
+- Raspberry Pi, bu veriyi LoRa modülü üzerinden gönderir.
+
+- Karşı tarafta başka bir LoRa modülü bu veriyi alır.
+
+- Karşı tarafın Raspberry Pi’si tekrar veriyi Bluetooth cihazına iletir.
+
+Yani aslında Bluetooth + LoRa köprüsü kuruyoruz. Bluetooth kısa mesafeli, LoRa uzun mesafeli.
+
+Bu sistem aslında **“Bluetooth Mesh / Long Range Gateway”** gibi düşünülebilir.
+
+
+**LoRa çok yavaş(genellikle 0.3–50 kbps), bluetooth üzerinden yüksek veri aktarırsak çok yavaş oluyor. LoRa paket bazlı çalışır. Eğer sürekli ve hızlı veri akışı istersen gecikmeler olabilir. Bluetooth verisini direkt LoRa’ya gönderemeyiz, onu bir protokole (örneğin seri veri) çevirmemiz gerekir. Yani LoRa “tünel” gibi çalışacak.**
+
+
+- **Bluetooth**: kısa mesafe, düşük güç, cihaz eşleştirme.
+
+- **LoRa**: uzun mesafe, düşük veri hızı, tek yönlü veya çift yönlü veri aktarımı.
+
+- **Raspberry Pi**: veri alıcı, protokol çevirici, köprü.
+
+
+
 
 
 
@@ -121,4 +156,3 @@ Resim kaynakçası -> https://www.geeksforgeeks.org/computer-networks/bluetooth/
 - https://www.sony.co.uk/electronics/support/articles/00030769
 - https://www.cisa.gov/news-events/news/understanding-bluetooth-technology
 - https://www.7signal.com/bluetooth
-- https://www.tutorialspoint.com/wireless_communication/wireless_communication_bluetooth.htm
