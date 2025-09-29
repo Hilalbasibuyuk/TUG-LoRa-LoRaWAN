@@ -1,7 +1,7 @@
 # Bluetooth Kablosuz Haberleşme 
 
 
-Bluetooth, kısa menzilli kablosuz ses ve veri iletişimi için kullanılır. Bir Kablosuz Kişisel Alan Ağı (WPAN) teknolojisidir ve daha kısa mesafelerde veri iletişimi için kullanılır. Bu nesil, 1994 yılında Ericson tarafından icat edilmiştir. 2,4 GHz ile 2,485 GHz arasındaki lisanssız, ticari, bilimsel ve klinik (ISM) bantlarında çalışır. Bluetooth, 10 metreye kadar menzil sunar. Sürüme bağlı olarak en az 1 Mbps veya 3 Mbps'ye kadar veri sunar. Kullandığı yayma yöntemi FHSS'dir ( Frekans Atlamalı Açılım Spektrumu ). Bir Bluetooth ağına pikonet, birbirine bağlı pikonet grubuna ise saçılım ağı denir.
+Bluetooth, kısa menzilli kablosuz ses ve veri iletişimi için kullanılır. Bir Kablosuz Kişisel Alan Ağı (WPAN) teknolojisidir ve daha kısa mesafelerde veri iletişimi için kullanılır. Bu nesil, 1994 yılında Ericson tarafından icat edilmiştir. 2,4 GHz ile 2,485 GHz arasındaki lisanssız, ticari, bilimsel ve klinik (ISM) bantlarında çalışır. Bluetooth, 10 metreye kadar menzil sunar. Sürüme bağlı olarak en az 1 Mbps veya 3 Mbps'ye kadar veri sunar. Kullandığı yayma yöntemi **FHSS'dir (Frekans Atlamalı Açılım Spektrumu)**. Bir Bluetooth ağına pikonet, birbirine bağlı pikonet grubuna ise saçılım ağı denir.
 
 ---
 
