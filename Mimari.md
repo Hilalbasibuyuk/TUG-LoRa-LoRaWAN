@@ -54,7 +54,6 @@ bu da onu yapay zeka destekli IoT çözümleri için uygun hale getirir. Ayrıca
 - Custom UHF/VHF Data Link
 - Software Defined Radio (SDR)
 - CC1312R - Sub-1 GHz Wireless MCU
-- 
 
 
 ### Ağ Genişletme Katmanı (Mesh / Repeater / Gateway)
