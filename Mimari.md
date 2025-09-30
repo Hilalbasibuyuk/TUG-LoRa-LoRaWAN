@@ -67,3 +67,8 @@ Böylece internet olmasa bile cihazlar birbirleriyle haberleşir, kritik veriler
 
 - Ulaşım / lojistik → GSM kapsaması varsa LTE/5G, yoksa uydu tabanlı IoT modemler.
 
+
+
+# KAYNAKÇA
+- https://www.semtech.com/company/press/semtech-lora-gen-4-addresses-low-power-wireless-range-and-speed-limitations
+- 
