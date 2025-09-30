@@ -119,7 +119,7 @@ Böylece internet olmasa bile cihazlar birbirleriyle haberleşir, kritik veriler
 
 
 
-
+## ! Bluetooth'a gerek kalmayabilir
 
 
 
