@@ -41,6 +41,14 @@ bu da onu yapay zeka destekli IoT çözümleri için uygun hale getirir. Ayrıca
 - **LR2022(2026 1. çeyreğinde üretimi planlanıyor)** : Çift bantlı bir çözüm olarak tasarlanan bu cihaz, maliyet etkin bir profili korurken küresel alt GHz, 2,4 GHz veya uydu bağlantısı gerektiren uygulamalara hitap ediyor.
 
 
+### Yüksek Güçlü RF Modülleri LoRa yerine kullanılabilir bu modüllere örnekler
+- RFM300P 433/868 MHz 1W/4W RF Modül
+- RF4463F30 1W RF Modül
+- SV6300 1W RF Modül
+
+
+
+
 ### Temel katman (Yerel)
 
 - LoRa / LoRaWAN → Enerji, tarım, akıllı şehir sensörleri.
